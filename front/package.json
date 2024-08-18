@@ -1,7 +1,6 @@
 {
   "name": "front",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && live-server",
@@ -17,5 +16,6 @@
   },
   "dependencies": {
     "axios": "^1.7.3"
-  }
+  },
+  "description": ""
 }

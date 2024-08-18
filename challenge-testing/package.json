@@ -1,7 +1,6 @@
 {
   "name": "challengue-testing",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -13,5 +12,6 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0"
-  }
+  },
+  "description": ""
 }
