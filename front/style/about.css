@@ -1,0 +1,382 @@
+body, html {
+    margin-top: 3.5em;
+    padding: 0;
+    background-color: black;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10rem;
+    z-index: 1000;
+    background-color: black;
+}
+#linksAbout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: auto;
+}
+#linksAbout a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.linksCategories {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .linksCategories p {
+    text-decoration: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    margin: auto;
+    cursor: pointer;
+  }
+
+  .linksCategories i {
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  .linksCategories:hover {
+    border: solid 1px #0c1a78;
+    padding: 0.5em 0.8em 0.5em 0.8em;
+  }
+.logo {
+    /* Ajusta según el tamaño de tu logo */
+    width: fit-content;
+    align-items: center;
+}
+#logo {
+    width: 4em;
+    height: auto;
+    cursor: pointer;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+.search-container {
+    position: relative;
+    margin-right: 1em;
+}
+
+#search-icon {
+    color: white;
+    font-size: 1.2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.search-box {
+    display: none;
+    position: absolute;
+    top: 0em;
+    right: 100%;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 6px;
+    border: 1px solid transparent;
+    margin-right: 10px; /* Espacio entre la caja y la lupa */
+}
+
+.search-box.active {
+    display: block;
+}
+
+#movie-search {
+    width: 200px;
+    padding: 5px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+#movie-search:focus {
+    border: none;
+}
+
+#movie-search:not(:placeholder-shown) {
+    border: 1px solid #0c1a78 ;
+}
+
+#movie-search::placeholder {
+    color: #ccc;
+}
+
+.dropdown {
+    margin-right: 2em;
+    margin-top: 0;
+}
+.hr-dropdown {
+    padding: 0;
+}
+
+/* CSS para el hover de los elementos del menú */
+.dropdown-menu-dark .dropdown-item:hover {
+    background-color: #0c1a78;
+    color: white;
+  }
+
+  /* CSS para eliminar el color predefinido del elemento activo */
+  .dropdown-menu-dark .dropdown-item.active,
+  .dropdown-menu-dark .dropdown-item:active {
+    background-color: transparent;
+    color: white;
+  }
+
+  /* Asegurando que el hover funcione incluso si el elemento está activo */
+  .dropdown-menu-dark .dropdown-item.active:hover,
+  .dropdown-menu-dark .dropdown-item:active:hover {
+    background-color: #0c1a78;
+    color: white;
+  }
+
+.btn-custom {
+    background-color: #0c1a78;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(12, 26, 120, 1)); /* Ajustamos la transparencia */
+    color: white;
+    border: #0c1a78;
+}
+
+.btn-custom:hover, .btn-custom:focus, .btn-custom:active {
+    background-color: #0c1a78;
+    border-color: #0c1a78;
+    color: white;
+}
+
+.btn-custom:not(:disabled):not(.disabled):active,
+.btn-custom:not(:disabled):not(.disabled).active {
+    background-color: #0c1a78;;
+    border-color: #0c1a78;
+    color: white;
+}
+
+#aboutSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#aboutSection p {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+    font-size: 2.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+#buttonEnter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 6rem;
+}
+#buttonEnter button {
+    background-color: rgba(255, 115, 0, 0.877);
+    padding: 0.5em 2em 0.5em 2em;
+    color: black;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 6px;
+}
+
+#containerGrid {
+    margin: auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-gap: 2em;
+}
+#containerGrid #articleOne img {
+    width: 35em;
+    height: 25em;
+    margin: auto;
+}
+#containerGrid #articleOne h6 {
+    color: white;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+#containerGrid #articleTwo img {
+    width: 35em;
+    height: 25em;
+    margin: auto;
+}
+#containerGrid #articleTwo h6 {
+    color: white;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+#containerGrid #articleThree img {
+    width: 35em;
+    height: 25em;
+    margin: auto;
+}
+#containerGrid #articleThree h6 {
+    color: white;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+#containerGrid #articleFour img {
+    width: 35em;
+    height: 25em;
+    margin: auto;
+}
+#containerGrid #articleFour h6 {
+    color: white;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+#containerGrid #articleFive img {
+    width: 35em;
+    height: 25em;
+    margin: auto;
+}
+#containerGrid #articleFive h6 {
+    color: white;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+#containerGrid #articleSix img {
+    width: 35em;
+    height: 25em;
+    margin: auto;
+}
+#containerGrid #articleSix h6 {
+    color: white;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+
+footer{
+    display: flex;
+    flex-direction: row;
+    background-color:black;
+    height: auto;
+    margin-top: 6em;
+    border: #0a1664 solid 1px;
+    padding-top: 1em;
+}
+.leftFooter {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 1em;
+}
+.linksFooter {
+    display: flex;
+    flex-direction: row;
+    width: 67%;
+    margin-left: 1em;
+}
+.linksFooterLeft {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  
+}
+.linksFooterRight {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.linksFooterRight a,
+.linksFooterLeft a {
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    padding: 0.5em;
+    display: flex;
+    justify-content: start;    
+} 
+.FollowFooter {
+    margin-top: 3em;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+} 
+.FollowFooter h6 {
+    margin-left: 1.6em;
+    font-size: 1em;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.FollowFooter figure {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 1em;
+}
+.FollowFooter figure img {
+    width: 1em;
+    height: auto;
+}
+.ParagraphFooter {
+    margin: auto;
+    font-size: 1em;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgba(255, 255, 255, 0.253);
+}
+.rightFooter {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.faqsFooter {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+.faqsFooter h6 {
+    font-size: 1em;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 2em;
+    margin-left: 2em;
+}
+.faqsFooter p {
+    margin-left: 2em;
+    width: 90%;
+    font-size: 1em;
+    padding: 0.4em;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: Arial, Helvetica, sans-serif;
+}
+.logoFooter {
+    width: 97%;
+}
+.logoFooter img {
+    width: 4em;
+    height: auto;
+    margin-left: auto;
+}

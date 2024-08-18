@@ -1,0 +1,151 @@
+/* reset.css */
+
+/* Box sizing reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd,
+ol, ul, figure,
+hr,
+fieldset, legend {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+    padding: 0;
+    list-style: none;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+/* Anchor defaults */
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove animations and transitions for people who prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Remove all borders */
+* {
+    border: 0;
+    outline: 0;
+}
+
+/* Set a more readable line height */
+body {
+    line-height: 1.5;
+}
+
+/* Improve media defaults */
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    display: block;
+}
+
+/* Remove default table spacing */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Remove default quotes for blockquote */
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+    content: '';
+    content: none;
+}
+
+/* Set consistent form element appearance */
+button,
+input,
+select,
+textarea {
+    margin: 0;
+}
+
+/* Set form element appearance to inherit fonts */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* Enhance focus styles for accessibility */
+:focus {
+    outline: 2px dashed #007BFF;
+    outline-offset: 2px;
+}
+
+/* Provide basic styling for hr element */
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+}
+
+/* Ensure block elements have a min-height of 100vh */
+body,
+html {
+    min-height: 100vh;
+}
+
