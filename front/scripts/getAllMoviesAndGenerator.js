@@ -1,4 +1,5 @@
 const axios = require("axios");
+globalSection = null;
 
 const getAllMOviesAndGenerator = async () => {
     try {
@@ -58,26 +59,44 @@ function generateMovies(arrayMovies) {
             // Crear el dorso de la tarjeta
             const cardBack = document.createElement("div");
             cardBack.className = "card-back";
+
+            // Crear una imagen en la parte trasera con el mismo banner
+            const backImg = document.createElement("img");
+            backImg.src = movie.baner;  // Usa la misma imagen que en el frente
+            backImg.alt = `poster of ${movie.title} - back`;
+            backImg.style.filter = "brightness(20%) opacity(0.6)";  // Aplica el filtro
+            backImg.style.transform = "rotateY(180deg)";  // Rota la imagen para el efecto de voltear
+            backImg.style.width = "100%";  // Asegura que la imagen ocupe todo el contenedor
+
+            // Añadir la imagen de fondo al dorso
+            cardBack.appendChild(backImg);
+
             const title = document.createElement("h3");
             title.textContent = movie.title;
-            const year = document.createElement("p");
-            year.textContent = `Year: ${movie.year}`;
-            const director = document.createElement("p");
-            director.textContent = `Director: ${movie.director}`;
             const duration = document.createElement("p");
-            duration.textContent = `Duration: ${movie.duration}`;
+            duration.textContent = movie.duration;
             const genre = document.createElement("p");
-            genre.textContent = `Genre: ${movie.genre.join(", ")}`;
-            const rate = document.createElement("p");
-            rate.textContent = `Rating: ${movie.rate}`;
+            genre.textContent = movie.genre.join(", ");
+            const year = document.createElement("h4");
+            year.textContent = movie.year;
+            const section = document.createElement("h6");
+            section.textContent = movie.section;
+            const rate = document.createElement("h6");
+            rate.textContent = movie.rate;
+            const director = document.createElement("h6");
+            director.textContent = movie.director;
+            const movieReview = document.createElement("h6");
+            movieReview.textContent = movie.movieReview;
 
             // Añadir elementos al dorso de la tarjeta
             cardBack.appendChild(title);
-            cardBack.appendChild(year);
-            cardBack.appendChild(director);
             cardBack.appendChild(duration);
             cardBack.appendChild(genre);
+            cardBack.appendChild(year);
+            cardBack.appendChild(section);
             cardBack.appendChild(rate);
+            cardBack.appendChild(director);
+            cardBack.appendChild(movieReview);
 
             // Añadir el frente y el dorso principal de la tarjeta
             card.appendChild(cardFront);
@@ -85,8 +104,52 @@ function generateMovies(arrayMovies) {
 
             // Añadir la tarjeta al contenedor correspondiente
             container.appendChild(card);
+
+            card.addEventListener("click", function () {
+                const sectionCatch = {
+                    section: movie.section
+                };
+                globalSection = sectionCatch
+
+                const globalStreamDetails = {
+                    title: movie.title,
+                    genre: movie.genre.join(", "),
+                    year: movie.year,
+                    rate: movie.rate,
+                    duration: movie.duration,
+                    director: movie.director,
+                    movieReview: movie.movieReview
+                };
+                 // almacena el titulo en localstorage
+                 localStorage.setItem("selectedMovie", JSON.stringify(globalStreamDetails));
+
+                redirectBasedOnSection();
+            })
         });
     });
+};
+
+function redirectBasedOnSection() {
+    if (globalSection && globalSection.section) {
+        switch (globalSection.section) {
+            case "Animes":
+                window.location.pathname = "/pages/animes.html";
+                break;
+            case "Movie":
+                window.location.pathname = "/pages/movies.html";
+                break;
+            case "Series":
+                window.location.pathname = "/pages/series.html";
+                break;
+            default:
+                console.log("Sección no reconocida:", globalSection.section);
+                // Puedes agregar un redireccionamiento por defecto si lo necesitas
+                // window.location.href = "default.html";
+                break;
+        }
+    } else {
+        console.log("globalSection no está definida o no tiene una propiedad 'section'.");
+    }
 }
 
 // Exporta la función asíncrona

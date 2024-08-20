@@ -1,7 +1,70 @@
 const axios = require("axios");
 let lastMovieId = "";
 let player = null;
-let globalMovieDetails = null;
+let globalStreamDetails = null;
+
+// Función para cargar una película aleatoria
+const loadRandomMovie = async () => {
+    if (!lastMovieId && !globalStreamDetails) {  // Verificar si no hay datos ya presentes
+        try {
+            const response = await axios.get("http://localhost:3000/movies/Movie");
+            const movies = response.data;
+
+            // Seleccionar una película aleatoria
+            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+
+            // Guardar los detalles de la película seleccionada
+            globalStreamDetails = {
+                title: randomMovie.title,
+                genre: randomMovie.genre.join(", "),
+                year: randomMovie.year,
+                rate: randomMovie.rate,
+                duration: randomMovie.duration,
+                director: randomMovie.director,
+                movieReview: randomMovie.movieReview,
+            };
+
+            // Renderizar los detalles de la película en el menu-container
+            renderMovieDetails();
+
+            // Obtener el tráiler de YouTube basado en el título de la película seleccionada
+            generateTrailer(globalStreamDetails.title).then((id) => {
+                lastMovieId = id;
+
+                // Reproducir automáticamente el tráiler
+                setupVideo(true);
+            });
+
+        } catch (error) {
+            console.error("Error al obtener películas:", error.message);
+        }
+    } else {
+        console.log("Ya hay datos presentes, no se cargará una película aleatoria.");
+    }
+};
+
+// Recuperar el título desde localStorage y reproducir el tráiler si hay datos
+function getDetailsFrom() {
+    const storedMovieDetails = localStorage.getItem("selectedMovie");
+    if (storedMovieDetails) {
+        globalStreamDetails = JSON.parse(storedMovieDetails);
+
+        // Generar tráiler basado en el título almacenado
+        generateTrailer(globalStreamDetails.title).then((id) => {
+            lastMovieId = id;
+
+            // Reproducir automáticamente el tráiler
+            setupVideo(true);
+        });
+        renderMovieDetails();
+
+        // Borrar localstorage después de su uso 
+        localStorage.removeItem("selectedMovie");
+    } else {
+        console.log("No se encontró ningún dato en localStorage.");
+        loadRandomMovie();  // Si no hay datos en localStorage, cargar una película aleatoria
+    }
+}
 
 const generateSectionMovie = async () => {
     try {
@@ -12,8 +75,9 @@ const generateSectionMovie = async () => {
     }
 };
 
+// Función para renderizar los detalles de la película
 function renderMovieDetails() {
-    if (!globalMovieDetails) {
+    if (!globalStreamDetails) {
         console.error("No hay detalles de película para mostrar.");
         return;
     }
@@ -26,30 +90,30 @@ function renderMovieDetails() {
         previousDetails.remove();
     }
 
-    // Crea un contenedor para los nuevos detalles de la película
+    // Crear un contenedor para los nuevos detalles de la película
     const detailsDiv = document.createElement('div');
     detailsDiv.className = 'movie-details'; // Clase específica para detalles de la película
 
     const title = document.createElement('h3');
-    title.textContent = globalMovieDetails.title;
+    title.textContent = globalStreamDetails.title;
 
     const director = document.createElement('p');
-    director.textContent = `Director: ${globalMovieDetails.director}`;
+    director.textContent = `Director: ${globalStreamDetails.director}`;
 
     const duration = document.createElement('p');
-    duration.textContent = `Duration: ${globalMovieDetails.duration}`;
+    duration.textContent = `Duration: ${globalStreamDetails.duration}`;
 
     const genre = document.createElement('p');
-    genre.textContent = `Genre: ${globalMovieDetails.genre}`;
+    genre.textContent = `Genre: ${globalStreamDetails.genre}`;
 
     const year = document.createElement('p');
-    year.textContent = `Year: ${globalMovieDetails.year}`;
+    year.textContent = `Year: ${globalStreamDetails.year}`;
 
     const rate = document.createElement('p');
-    rate.textContent = `Rating: ${globalMovieDetails.rate}`;
+    rate.textContent = `Rating: ${globalStreamDetails.rate}`;
 
     const movieReview = document.createElement('p');
-    movieReview.textContent = `Review: ${globalMovieDetails.movieReview}`;
+    movieReview.textContent = `Review: ${globalStreamDetails.movieReview}`;
 
     detailsDiv.appendChild(title);
     detailsDiv.appendChild(director);
@@ -63,7 +127,7 @@ function renderMovieDetails() {
     menuContainer.appendChild(detailsDiv);
 }
 
-
+// Función para generar las tarjetas de películas
 function generateMovies(arrayMovies) {
     arrayMovies.forEach((movie) => {
         const container = document.getElementById('cardsContainer');
@@ -116,10 +180,10 @@ function generateMovies(arrayMovies) {
         
             // Añadimos un console.log para ver todos los detalles en la consola
             
-            globalMovieDetails = movieDetails;
-            console.log("Detalles de la película capturados en el click:", globalMovieDetails);
+            globalStreamDetails = movieDetails;
+            console.log("Detalles de la película capturados en el click:", globalStreamDetails);
 
-            // renderisar globalMovieDetails en movie-container
+            // Renderizar globalStreamDetails en movie-container
             renderMovieDetails();
         
             generateTrailer(movieDetails.title).then((id) => {
@@ -127,6 +191,8 @@ function generateMovies(arrayMovies) {
         
                 // Desplazar la página a la parte superior
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                console.log("El scroll se convirtió en 0");
         
                 // Esperar un pequeño tiempo para asegurarse de que el scroll ha terminado
                 setTimeout(() => {
@@ -135,7 +201,7 @@ function generateMovies(arrayMovies) {
             });
         });        
     });
-};
+}
 
 function extractYouTubeId(url) {
     let movieId;
@@ -245,6 +311,9 @@ if (typeof YT === 'undefined') {
 } else {
     setupVideo();
 }
+
+// Llamar a getTitleFrom para recuperar el título si existe
+getDetailsFrom();
 
 module.exports = {
     generateSectionMovie,

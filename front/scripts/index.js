@@ -29,9 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     if (window.location.href.includes("series")) {
       const { changeGenre, changeYear, changeAges, changeLanguage, applyFilters, resetIndices } = require("./Filtros");
-      const generateSectionSerie = require("./serieSection");
+      const { generateSectionSerie, setupVideo } = require("./serieSection");
       const headerScroll = require("./headerScroll");
 
+
+      generateSectionSerie();
+      setupVideo();
       resetIndices();
       changeGenre();
       changeYear();
@@ -39,13 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
       changeLanguage();
       applyFilters();
       headerScroll();
-      generateSectionSerie();
     } 
     else if (window.location.href.includes("animes")) {
       const { changeGenre, changeYear, changeAges, changeLanguage, applyFilters, resetIndices } = require("./Filtros");
-      const generateSectionAnime = require("./animeSection");
+      const {generateSectionAnime, setupVideo} = require("../scripts/animeSection")
       const headerScroll = require("./headerScroll");
-
+      
+      generateSectionAnime()
+      setupVideo();
       resetIndices();
       changeGenre();
       changeYear();
@@ -53,12 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
       changeLanguage();
       applyFilters();
       headerScroll();
-      generateSectionAnime();
     }
     else if (window.location.href.includes("movies")) {
       const { changeGenre, changeYear, changeAges, changeLanguage, applyFilters, resetIndices } = require("./Filtros");
       const headerScroll = require("./headerScroll");
-      const { generateSectionMovie, setupVideo } = require("./gerateMoviesSection");
+      const { generateSectionMovie, setupVideo} = require("./gerateMoviesSection");
       
       generateSectionMovie();
       setupVideo();
@@ -75,6 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 if(window.location.pathname.includes("movies")) {
+  require("../scripts/menucContainer")
+}
+
+if(window.location.pathname.includes("animes")) {
+  require("../scripts/menucContainer")
+}
+
+if(window.location.pathname.includes("series")) {
   require("../scripts/menucContainer")
 }
 
