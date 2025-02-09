@@ -212,7 +212,7 @@ function extractYouTubeId(url) {
 }
 
 const generateTrailer = async (title) => {
-    const url = `http://localhost:3000/movies/trailers?title=${encodeURIComponent(title)}`;
+    const url = `${API_URL}/movies/trailers?title=${encodeURIComponent(title)}`;
     try {
         const response = await axios.get(url);
         const trailerUrl = response.data;
