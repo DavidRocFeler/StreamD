@@ -2,7 +2,7 @@ const axios = require("axios");
 let lastMovieId = "";
 let player = null;
 let globalStreamDetails = null;
-const API_URL = process.env.API_URL || "http://localhost:3000";
+const API_URL = process.env.API_URL;
 
 // Función para cargar una película aleatoria
 const loadRandomMovie = async () => {

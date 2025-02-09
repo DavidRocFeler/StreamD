@@ -1,6 +1,6 @@
 const axios = require("axios");
 globalSection = null;
-const API_URL = process.env.API_URL || "http://localhost:3000";
+const API_URL = process.env.API_URL;
 
 console.log("API URL:", API_URL); 
 

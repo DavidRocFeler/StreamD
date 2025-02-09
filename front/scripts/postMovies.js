@@ -1,6 +1,6 @@
 const axios = require("axios");
 const validation = require("./validation");
-const API_URL = process.env.API_URL || "http://localhost:3000";
+const API_URL = process.env.API_URL;
 
 const postMovie = async () => {
   // Verifica si el checkbox de "acceptTerms" está marcado
