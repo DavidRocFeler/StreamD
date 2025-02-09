@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "public": "front",
   "routes": [
     { "src": "/style/(.*)", "dest": "/style/$1" }
   ]
