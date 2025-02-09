@@ -2,7 +2,7 @@ const axios = require("axios");
 let lastSerieId = "";
 let player = null;
 let globalSerieDetails = null;
-const API_URL = process.env.API_URL;
+const API_URL = process.env.API_URL || "https://streamd.onrender.com"
 
 // Función para cargar una película aleatoria
 const loadRandomMovie = async () => {

@@ -1,6 +1,6 @@
 const axios = require("axios");
 const validation = require("./validation");
-const API_URL = process.env.API_URL;
+const API_URL = process.env.API_URL || "https://streamd.onrender.com"
 
 const postMovie = async () => {
   // Verifica si el checkbox de "acceptTerms" está marcado
