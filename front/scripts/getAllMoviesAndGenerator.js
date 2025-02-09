@@ -1,6 +1,6 @@
 const axios = require("axios");
 globalSection = null;
-const API_URL = process.env.API_URL;
+const API_URL = process.env.API_URL || "https://streamd.onrender.com"
 
 console.log("API URL:", API_URL); 
 console.log("Valor en process.env.API_URL:", process.env.API_URL);
