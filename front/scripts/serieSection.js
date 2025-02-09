@@ -2,12 +2,13 @@ const axios = require("axios");
 let lastSerieId = "";
 let player = null;
 let globalSerieDetails = null;
+const API_URL = process.env.API_URL || "http://localhost:3000";
 
 // Función para cargar una película aleatoria
 const loadRandomMovie = async () => {
     if (!lastSerieId && !globalSerieDetails) {  // Verificar si no hay datos ya presentes
         try {
-            const response = await axios.get("http://localhost:3000/movies/Series");
+            const response = await axios.get(`${API_URL}/movies/Series`);
             const series = response.data;
 
             // Seleccionar una película aleatoria
@@ -67,7 +68,7 @@ function getDetailsFrom() {
 
 const generateSectionSerie = async () => {
     try {
-        const resp = await axios.get("http://localhost:3000/movies/Series");
+        const resp = await axios.get(`${API_URL}/movies/Series`);
         generateSerie(resp.data);
     } catch (error) {
         console.error('Error al obtener películas:', error.message);

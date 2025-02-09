@@ -181,7 +181,7 @@ nav {
     top: 0;
     left: -50%; /* Oculto fuera de la pantalla */
     width: 50%;
-    height: calc(79vh + 4.6em); /* 80vh para el video + 4.5em para el header */
+    height: 52vw;
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
     overflow-y: auto;
@@ -193,7 +193,8 @@ nav {
 }
 .serie-details{
     width: 80%;
-    margin-bottom: 2em;
+    position: absolute;
+    top: 5rem;
 }
 .serie-details h3{
     font-size: 2.3em;
@@ -209,7 +210,7 @@ nav {
     left: 0; /* Mostrar el menú deslizándolo */
 }
 #logo-in-menu {
-    margin-bottom: 3em; /* 1em del fondo */
+    margin-bottom: 5em; /* 1em del fondo */
     width: 3.5rem; /* Ajusta el tamaño según sea necesario */
     height: auto; /* Mantén las proporciones */
 }

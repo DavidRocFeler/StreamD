@@ -1,10 +1,13 @@
 const axios = require("axios");
 globalSection = null;
+const API_URL = process.env.API_URL || "http://localhost:3000";
+
+console.log("API URL:", API_URL); 
 
 const getAllMOviesAndGenerator = async () => {
     try {
         console.log('Llamando a la API de películas...');
-        const resp = await axios.get("http://localhost:3000/movies");
+        const resp = await axios.get(`${API_URL}/movies`);
         console.log('Datos recibidos de la API:', resp.data);
         generateMovies(resp.data);  // Llama a la función para generar y distribuir las películas
     } catch (error) {

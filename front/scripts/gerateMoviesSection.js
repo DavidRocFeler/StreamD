@@ -2,12 +2,13 @@ const axios = require("axios");
 let lastMovieId = "";
 let player = null;
 let globalStreamDetails = null;
+const API_URL = process.env.API_URL || "http://localhost:3000";
 
 // Función para cargar una película aleatoria
 const loadRandomMovie = async () => {
     if (!lastMovieId && !globalStreamDetails) {  // Verificar si no hay datos ya presentes
         try {
-            const response = await axios.get("http://localhost:3000/movies/Movie");
+            const response = await axios.get(`${API_URL}/movies/Movie`);
             const movies = response.data;
 
             // Seleccionar una película aleatoria
@@ -68,7 +69,7 @@ function getDetailsFrom() {
 
 const generateSectionMovie = async () => {
     try {
-        const resp = await axios.get("http://localhost:3000/movies/Movie");
+        const resp = await axios.get(`${API_URL}/movies/Movie`);
         generateMovies(resp.data);
     } catch (error) {
         console.error('Error al obtener películas:', error.message);
@@ -214,7 +215,7 @@ function extractYouTubeId(url) {
 }
 
 const generateTrailer = async (title) => {
-    const url = `http://localhost:3000/movies/trailers?title=${encodeURIComponent(title)}`;
+    const url = `${API_URL}/movies/trailers?title=${encodeURIComponent(title)}`;
     try {
         const response = await axios.get(url);
         const trailerUrl = response.data;

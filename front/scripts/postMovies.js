@@ -1,5 +1,6 @@
 const axios = require("axios");
 const validation = require("./validation");
+const API_URL = process.env.API_URL || "http://localhost:3000";
 
 const postMovie = async () => {
   // Verifica si el checkbox de "acceptTerms" está marcado
@@ -33,7 +34,7 @@ const postMovie = async () => {
     console.log("Datos que se enviarán:", movie); 
 
     validation();
-    const response = await axios.post("http://localhost:3000/movies", movie);
+    const response = await axios.post(`${API_URL}/movies`, movie);
     
     console.log("Response of server:", response.data); 
 
